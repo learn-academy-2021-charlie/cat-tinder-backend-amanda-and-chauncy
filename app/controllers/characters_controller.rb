@@ -5,7 +5,7 @@ class CharactersController < ApplicationController
     end
     def create
         character = Character.create(character_params)
-        byebug
+
         if character.valid?
         render json: character
         else
