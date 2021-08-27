@@ -5,7 +5,12 @@ class CharactersController < ApplicationController
     end
     def create
         character = Character.create(character_params)
+
+        if character.valid?
         render json: character
+        else
+          render json: character.errors, status: 422
+        end
     end
     def update
         character = Character.find(params[:id])
@@ -16,5 +21,5 @@ class CharactersController < ApplicationController
     def character_params
       params.require(:character).permit(:name, :animal, :enjoys, :personality)
     end
-  end
+end
 
